@@ -7,9 +7,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  followingBool: boolean;
+  followersBool: boolean;
+  kweetBool: boolean;
+  constructor() { 
+    this.kweetBool=true;
+  }
 
   ngOnInit() {
+  }
+
+  followingClick() {
+    this.followingBool = true;
+    this.followersBool = false;
+    this.kweetBool = false;
+  }
+  followersClick() {
+    this.followingBool = false;
+    this.followersBool = true;
+    this.kweetBool = false;
+  }
+  kweetClick(){
+    this.followingBool = false;
+    this.followersBool = false;
+    this.kweetBool = true;
   }
 
 }
