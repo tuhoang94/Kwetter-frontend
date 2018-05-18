@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Kweet } from '../models/kweet';
 import { KweetService } from '../api/kweet.service';
 import { User } from '../models/user';
+import { UserService } from '../api/user.service';
 
 
 @Component({
@@ -17,11 +18,11 @@ export class ProfileComponent implements OnInit {
 
   loggedinUser: User;
   ownKweets: Kweet[];
-  followingUsers: User[];
-  followersUsers: User[];
+  followingUsers: any[];
+  followersUsers: any[];
 
 
-  constructor(private kweetService: KweetService) {
+  constructor(private kweetService: KweetService, private userService: UserService) {
     this.kweetBool = true;
     var retrievedObject = localStorage.getItem('loggedinUser');
 
@@ -30,6 +31,8 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getFollowers();
+    this.getFollowing();
   }
 
   /*
@@ -61,13 +64,32 @@ export class ProfileComponent implements OnInit {
 
   // return following users
   getFollowing() {
-    
-
+    this.userService.getFollowing(this.loggedinUser.id)
+    .subscribe(
+    data => {
+      this.followingUsers = data;
+      console.log("followers");
+      console.log(data);
+    },
+    error => {
+      console.log("error");
+      console.log(error);
+    });
   }
 
   //return followers users
   getFollowers() {
-
+    this.userService.getFollowers(this.loggedinUser.id)
+    .subscribe(
+    data => {
+      this.followersUsers = data;
+      console.log("followers");
+      console.log(data);
+    },
+    error => {
+      console.log("error");
+      console.log(error);
+    });
   }
 
   //return user 

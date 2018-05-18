@@ -93,9 +93,9 @@
 
                             </div>
                             <div class="card-action">
-                                <a href="#">JeroenvdWal</a>
-                                <p></p>
-                                <a href="#">jbieber99</a>
+                                <p *ngFor="let user of followingUsers">
+                                    <a>{{user?.username}}</a>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -106,9 +106,9 @@
 
                             </div>
                             <div class="card-action">
-                                <a href="#">JeroenvdWal</a>
-                                <p></p>
-                                <a href="#">jbieber99</a>
+                                <p *ngFor="let user of followersUsers">
+                                    <a>{{user?.username}}</a>
+                                </p>
                             </div>
                         </div>
                     </div>

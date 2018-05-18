@@ -5,12 +5,12 @@
         <div class="col s3">
           <div class="card">
             <div class="card-content">
-              <span class="card-title">{{loggedinUser.username}}</span>
+              <span class="card-title">{{user?.username}}</span>
             </div>
             <div class="card-action">
-              <a href="#">{{loggedinUser.followersAccountsCount}} Followers</a>
+              <a href="#">{{user?.followersAccountsCount}} Followers</a>
               <p></p>
-              <a href="#">{{loggedinUser.followingAccountsCount}} Following</a>
+              <a href="#">{{user?.followingAccountsCount}} Following</a>
             </div>
           </div>
           <div class="card">

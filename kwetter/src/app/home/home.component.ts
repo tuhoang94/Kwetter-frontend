@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { KweetService } from '../api/kweet.service';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { UserService } from '../api/user.service';
 
 
 @Component({
@@ -13,7 +14,6 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  loggedinUser: User;
 
   kweetsFollowing: any[];
 
@@ -23,11 +23,11 @@ export class HomeComponent implements OnInit {
 
   search:any;
 
-  constructor(private kweetService: KweetService) {
+  user:User;
+  constructor(private kweetService: KweetService, private userService: UserService) {
     var retrievedObject = localStorage.getItem('loggedinUser');
-
-    this.loggedinUser = JSON.parse(retrievedObject);
-    console.log(this.loggedinUser);
+    
+    userService.getUserById(JSON.parse(retrievedObject)["id"]).subscribe(data=>{this.user = data;});
   }
 
   ngOnInit() {
@@ -71,14 +71,14 @@ export class HomeComponent implements OnInit {
   }
 
   addKweet() {
-    let userid = this.loggedinUser.id;
+    let userid = this.user.id;
     this.kweetService.addKweet(this.message, userid).subscribe(
       data => {
         let kweet =
           {
-            "id": this.loggedinUser.id,
+            "id": this.user.id,
             "message": this.message,
-            "username": this.loggedinUser.username
+            "username": this.user.username
           }
 
           ;

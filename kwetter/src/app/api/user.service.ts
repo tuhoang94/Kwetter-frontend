@@ -28,33 +28,33 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
 
-  getUsers() : Observable<User[]>{
+  getUsers(): Observable<User[]> {
     return this.http.get("http://localhost:8080/kwetter/rest/user/get")
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  getUserById(id: number) : Observable<User>{
+  getUserById(id: number): Observable<any> {
+    return this.http.get("http://localhost:8080/kwetter/rest/user/get/" + id, this.httpOptions)
+      .map((res: Response) => res)
+      .catch((error: any) => this.handleError(error));
+  }
+
+  getUserByUsername(username: string): Observable<any> {
     return this.http.get("")
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  getUserByUsername(username: string): Observable<User> {
-    return this.http.get("")
-      .map((res: Response) => res.json())
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  getFollowers(userId: number): Observable<any[]> {
+    return this.http.get("http://localhost:8080/kwetter/rest/user/followers/" + userId, this.httpOptions)
+      .map((res: Response) => res)
+      .catch((error: any) => this.handleError(error));
   }
-
-  getFollowers() : Observable<User[]>{
-    return this.http.get("")
-      .map((res: Response) => res.json())
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
-  }
-  getFollowing() : Observable<User[]>{
-    return this.http.get("")
-      .map((res: Response) => res.json())
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  getFollowing(userId: number): Observable<any[]> {
+    return this.http.get("http://localhost:8080/kwetter/rest/user/following/" + userId, this.httpOptions)
+      .map((res: Response) => res)
+      .catch((error: any) => this.handleError(error));
   }
 
   createUser(user: User): Observable<User> {
@@ -63,18 +63,18 @@ export class UserService {
       .catch((e: any) => Observable.throw(this.errorHandler(e)));
   }
 
-  followUser(usernameLoggedin:string, userFollowing){
+  followUser(usernameLoggedin: string, userFollowing) {
     return this.http.post(this.apiUrl, "", this.httpOptions)
-    .map(response => console.log(response))
-    .catch((e: any) => Observable.throw(this.errorHandler(e)));
+      .map(response => console.log(response))
+      .catch((e: any) => Observable.throw(this.errorHandler(e)));
   }
 
-  unfollowUser(usernameLoggedin:string, userUnfollowing){
+  unfollowUser(usernameLoggedin: string, userUnfollowing) {
     return this.http.post(this.apiUrl, "", this.httpOptions)
-    .map(response => console.log(response))
-    .catch((e: any) => Observable.throw(this.errorHandler(e)));
+      .map(response => console.log(response))
+      .catch((e: any) => Observable.throw(this.errorHandler(e)));
   }
-  
+
   updateUser(user: User) {
     return this.http.put(this.apiUrl + user.id, user);
 
@@ -87,6 +87,9 @@ export class UserService {
 
   errorHandler(error: any): void {
     console.log(error)
+  }
+  private handleError(error: Response) {
+    return Observable.throw(error.statusText);
   }
 
 }
