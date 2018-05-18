@@ -62,18 +62,16 @@
             </div>
           </div>
 
-          <div class="row">
+          <div class="row" style="max-height: 10%">
             <nav>
               <div class="nav-wrapper cyan">
-                <form>
-                  <div class="input-field">
-                    <input id="search" type="search" placeholder="Search by username..." required>
+                  <div class="input-field" >
+                    <input id="search" type="search" [(ngModel)]="search" placeholder="Search by username..." required>
                     <label class="label-icon" for="search">
                       <i class="material-icons">search</i>
                     </label>
                     <i class="material-icons">close</i>
                   </div>
-                </form>
               </div>
             </nav>
           </div>
@@ -82,7 +80,7 @@
             <div class="card">
               <div class="card-content left-align">
 
-                <ul *ngFor="let kweet of kweets">
+                <ul *ngFor="let kweet of kweets| searchKweet : search ">
                   <b>{{kweet?.username}}</b>
                   <a>@{{kweet?.username}}</a>
                   <li>{{kweet?.message}}</li>
