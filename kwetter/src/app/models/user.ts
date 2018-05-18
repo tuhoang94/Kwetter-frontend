@@ -6,5 +6,12 @@ export class User {
     public password: string;
     public profilePhoto: string;
     public role: string;
-    public kweets: Kweet[];
+    public bio: string;
+    public location: string;
+    public website: string;
+    public kweetsCount: number;
+    public followersAccountsCount: number;
+    public followingAccountsCount: number;
+
+
 }

@@ -5,28 +5,43 @@
         <div class="col s3">
           <div class="card">
             <div class="card-content">
-              <span class="card-title">TuHoang94</span>
+              <span class="card-title">{{loggedinUser.username}}</span>
             </div>
             <div class="card-action">
-              <a href="#">55 Followers</a>
-              <p></p><a href="#">11 Following</a>
+              <a href="#">{{loggedinUser.followersAccountsCount}} Followers</a>
+              <p></p>
+              <a href="#">{{loggedinUser.followingAccountsCount}} Following</a>
             </div>
           </div>
           <div class="card">
-              <div class="card-content">
-                <span class="card-title"><b>Trends for you</b></span>
-              </div>
-              <div class="card-action">
-                  <ul>
-                      <li><a href="#">#Cofee</a></li>
-                      <li><a href="#">#Tea</a></li>
-                      <li><a href="#">#Milk</a></li>
-                      <li><a href="#">#Cookie</a></li>
-                      <li><a href="#">#Candy</a></li>
-                      <li><a href="#">#Sword</a></li>
-                    </ul>
-              </div>
+            <div class="card-content">
+              <span class="card-title">
+                <b>Trends for you</b>
+              </span>
             </div>
+            <div class="card-action">
+              <ul>
+                <li>
+                  <a href="#">#Cofee</a>
+                </li>
+                <li>
+                  <a href="#">#Tea</a>
+                </li>
+                <li>
+                  <a href="#">#Milk</a>
+                </li>
+                <li>
+                  <a href="#">#Cookie</a>
+                </li>
+                <li>
+                  <a href="#">#Candy</a>
+                </li>
+                <li>
+                  <a href="#">#Sword</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
         <div class="col s9">
           <div class="row">
@@ -34,23 +49,47 @@
               <div class="card-content">
                 <div class="row">
                   <div class="input-field col s12">
-                    <input id="email" type="text">
-                    <label for="email">What's happening?</label>
+                    <input id="message" type="text" [(ngModel)]="message">
+                    <label for="message">What's happening?</label>
                   </div>
                 </div>
                 <div class="row">
-                  <button class="col s3 btn waves-effect waves-light" type="submit" name="action">Submit
+                  <button class="col s3 btn waves-effect waves-light" type="submit" name="action" (click)="addKweet()">Submit
                     <i class="material-icons right">send</i>
                   </button>
                 </div>
               </div>
             </div>
           </div>
+
+          <div class="row">
+            <nav>
+              <div class="nav-wrapper cyan">
+                <form>
+                  <div class="input-field">
+                    <input id="search" type="search" placeholder="Search by username..." required>
+                    <label class="label-icon" for="search">
+                      <i class="material-icons">search</i>
+                    </label>
+                    <i class="material-icons">close</i>
+                  </div>
+                </form>
+              </div>
+            </nav>
+          </div>
+
           <div class="row">
             <div class="card">
               <div class="card-content left-align">
+
+                <ul *ngFor="let kweet of kweets">
+                  <b>{{kweet?.username}}</b>
+                  <a>@{{kweet?.username}}</a>
+                  <li>{{kweet?.message}}</li>
+                </ul>
+                <!--
                 <ul>
-                  <b>Tu</b> @TuHoang94
+                  <b>Tu</b> <a>@TuHoang94</a>
                   <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
                     atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique
                     sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum
@@ -69,7 +108,7 @@
                     atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique
                     sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum
                     facilis est et expedita distinctio. </li>
-                </ul>
+                </ul>-->
               </div>
             </div>
           </div>

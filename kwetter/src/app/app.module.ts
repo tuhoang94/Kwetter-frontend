@@ -13,6 +13,10 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserService } from './api/user.service'; 
 import { AuthenticationService } from './api/authentication.service';
+import { RegisterComponent } from './register/register.component';
+import { KweetService } from './api/kweet.service';
+import { OtheruserprofileComponent } from './otheruserprofile/otheruserprofile.component';
+import { SearchKweetPipe } from './pipe/search-kweet.pipe';
 
 
 
@@ -23,7 +27,10 @@ import { AuthenticationService } from './api/authentication.service';
     LoginComponent,
     HeaderComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    RegisterComponent,
+    OtheruserprofileComponent,
+    SearchKweetPipe
   ],
   imports: [
     BrowserModule,
@@ -31,7 +38,7 @@ import { AuthenticationService } from './api/authentication.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [UserService, AuthenticationService],
+  providers: [UserService, AuthenticationService, KweetService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

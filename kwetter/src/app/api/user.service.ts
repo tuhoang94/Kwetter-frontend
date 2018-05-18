@@ -14,30 +14,47 @@ export class UserService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
+      //'Access-Control-Allow-Origin': '*'
+    })
+  };
+
+  httpPost = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded'
     })
   };
 
 
   constructor(private http: HttpClient) { }
 
-  public extractData(res: Response) {
-    const body = res.json();
-    return body;
+
+  getUsers() : Observable<User[]>{
+    return this.http.get("http://localhost:8080/kwetter/rest/user/get")
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  getUsers() {
-    return this.http.get(this.apiUrl);
+  getUserById(id: number) : Observable<User>{
+    return this.http.get("")
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  getUserById(id: number) {
-    return this.http.get(this.apiUrl + id);
-
+  getUserByUsername(username: string): Observable<User> {
+    return this.http.get("")
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  getUserByUsername(username: string) {
-    return this.http.get(this.apiUrl + username);
-
+  getFollowers() : Observable<User[]>{
+    return this.http.get("")
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+  getFollowing() : Observable<User[]>{
+    return this.http.get("")
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   createUser(user: User): Observable<User> {
@@ -46,6 +63,18 @@ export class UserService {
       .catch((e: any) => Observable.throw(this.errorHandler(e)));
   }
 
+  followUser(usernameLoggedin:string, userFollowing){
+    return this.http.post(this.apiUrl, "", this.httpOptions)
+    .map(response => console.log(response))
+    .catch((e: any) => Observable.throw(this.errorHandler(e)));
+  }
+
+  unfollowUser(usernameLoggedin:string, userUnfollowing){
+    return this.http.post(this.apiUrl, "", this.httpOptions)
+    .map(response => console.log(response))
+    .catch((e: any) => Observable.throw(this.errorHandler(e)));
+  }
+  
   updateUser(user: User) {
     return this.http.put(this.apiUrl + user.id, user);
 
