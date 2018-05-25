@@ -5,7 +5,7 @@
                 <div class="col s3">
                     <div class="card">
                         <div class="card-content">
-                            <span class="card-title">{{loggedinUser.username}}</span>
+                            <span class="card-title">{{loggedinUser?.username}}</span>
                             <img src="https://www.weact.org/wp-content/uploads/2016/10/Blank-profile.png" alt="Mountain View">
                             <div class="row">
                                 <div class="col s3" style="text-align:left">
@@ -15,18 +15,18 @@
                                     <label>Bio:</label>
                                 </div>
                                 <div class="col s9" style="text-align:left">
-                                    <p>{{loggedinUser.username}}</p>
-                                    <p>{{loggedinUser.location}}</p>
-                                    <p>{{loggedinUser.website}}</p>
-                                    <p>{{loggedinUser.bio}}</p>
+                                    <p>{{loggedinUser?.username}}</p>
+                                    <p>{{loggedinUser?.location}}</p>
+                                    <p>{{loggedinUser?.website}}</p>
+                                    <p>{{loggedinUser?.bio}}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="card-action">
 
-                            <a (click)="followingClick()">{{loggedinUser.followersAccountsCount}} Followers</a>
+                            <a (click)="followingClick()">{{loggedinUser?.followersAccountsCount}} Followers</a>
                             <p></p>
-                            <a (click)="followersClick()">{{loggedinUser.followingAccountsCount}} Following</a>
+                            <a (click)="followersClick()">{{loggedinUser?.followingAccountsCount}} Following</a>
                         </div>
                     </div>
                 </div>
@@ -59,6 +59,11 @@
                                     <h4>Your kweets</h4>
                                 </span>
                                 <hr>
+                                <ul *ngFor="let kweet of ownKweets">
+                                    <b>Blabla</b>@{{kweet?.username}}
+                                    <li>{{kweet.message}}</li>
+
+                                </ul>
                                 <ul>
                                     <b>Tu</b> @TuHoang94
                                     <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
@@ -94,8 +99,8 @@
                             </div>
                             <div class="card-action">
                                 <p *ngFor="let user of followingUsers">
-                                    <a>{{user?.username}}</a>
-                                </p>
+                                        <a [routerLink]="['/otheruser', user.id]">{{user?.username}}</a>
+                                    </p>
                             </div>
                         </div>
                     </div>
@@ -107,7 +112,7 @@
                             </div>
                             <div class="card-action">
                                 <p *ngFor="let user of followersUsers">
-                                    <a>{{user?.username}}</a>
+                                    <a [routerLink]="['/otheruser', user.id]">{{user?.username}}</a>
                                 </p>
                             </div>
                         </div>

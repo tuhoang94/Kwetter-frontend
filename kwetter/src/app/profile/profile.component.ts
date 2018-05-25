@@ -33,6 +33,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.getFollowers();
     this.getFollowing();
+    this.getOwnKweets();
   }
 
   /*

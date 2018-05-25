@@ -1,3 +1,120 @@
-<p>
-  otheruserprofile works!
-</p>
+<div class="valign-wrapper" style="padding-top: 80px">
+    <div class="container">
+        <div class="center-align">
+            <div class="row">
+                <div class="col s3">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">{{user?.username}}</span>
+                            <img src="https://www.weact.org/wp-content/uploads/2016/10/Blank-profile.png" alt="Mountain View">
+                            <div class="row">
+                                <div class="col s3" style="text-align:left">
+                                    <label>Name:</label>
+                                    <label>Location:</label>
+                                    <label>Web:</label>
+                                    <label>Bio:</label>
+                                </div>
+                                <div class="col s9" style="text-align:left">
+                                    <p>{{user?.username}}</p>
+                                    <p>{{user?.location}}</p>
+                                    <p>{{user?.website}}</p>
+                                    <p>{{user?.bio}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-action">
+
+                            <a (click)="followingClick()">{{user?.followersAccountsCount}} Followers</a>
+                            <p></p>
+                            <a (click)="followersClick()">{{user?.followingAccountsCount}} Following</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s9">
+                    <div class="row">
+                        <nav>
+                            <div class="nav-wrapper cyan">
+                                <a href="#" class="brand-logo right">
+                                    <i class="material-icons">edit</i>
+                                </a>
+
+                                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                                    <li>
+                                        <a (click)="kweetClick()">Kweets</a>
+                                    </li>
+                                    <li>
+                                        <a (click)="followingClick()">Following</a>
+                                    </li>
+                                    <li>
+                                        <a (click)="followersClick()">Followers</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <div *ngIf="kweetBool" class="row">
+                        <div class="card">
+                            <div class="card-content left-align">
+                                <span class="card-title">
+                                    <h4>Your kweets</h4>
+                                </span>
+                                <hr>
+                                <ul>
+                                    <b>Tu</b> @TuHoang94
+                                    <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+                                        voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint
+                                        occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt
+                                        mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est
+                                        et expedita distinctio. </li>
+                                </ul>
+                                <ul>
+                                    <b>Tu</b> @TuHoang94
+                                    <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+                                        voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint
+                                        occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt
+                                        mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est
+                                        et expedita distinctio. </li>
+                                </ul>
+                                <ul>
+                                    <b>Tu</b> @TuHoang94
+                                    <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+                                        voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint
+                                        occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt
+                                        mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est
+                                        et expedita distinctio. </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="followingBool" class="row">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">Following</span>
+
+                            </div>
+                            <div class="card-action">
+                                <p *ngFor="let user of followingUsers">
+                                    <a (click)="goOtherUser(user.id)">{{user?.username}}</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="followersBool" class="row">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title">Followers</span>
+
+                            </div>
+                            <div class="card-action">
+                                <p *ngFor="let user of followersUsers">
+                                    <!--<a [routerLink]="['/otheruser', user.id]">{{user?.username}}</a>-->
+                                    <a (click)="goOtherUser(user.id)">{{user?.username}}</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
