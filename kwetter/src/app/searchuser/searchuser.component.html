@@ -1,0 +1,59 @@
+<div class="valign-wrapper" style="padding-top: 80px">
+  <div class="container">
+    <div class="center-align">
+      <div class="row">
+        <div class="col12">
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title">
+                <b>Kwetteraars</b>
+              </span>
+            </div>
+            <div class="card-content">
+              <div class="row">
+                <nav>
+                  <div class="nav-wrapper teal lighten-1">
+                    <div class="input-field">
+                      <input id="search" type="search" [(ngModel)]="search" placeholder="Search by username..." required>
+                      <label class="label-icon" for="search">
+                        <i class="material-icons">search</i>
+                      </label>
+                      <i class="material-icons">close</i>
+                    </div>
+                  </div>
+                </nav>
+              </div>
+            </div>
+            <div class="card-action">
+              <ul class="collection">
+                <li *ngFor="let user of users | searchKweet : search" class="collection-item avatar">
+
+                  <i class="material-icons circle teal">person</i>
+                  <span class="title">
+                      <a [routerLink]="['/otheruser', user.id]"><b>{{user?.username}}</b></a>
+                  </span>
+                  <p>Software Engineer
+                    <br> {{user?.followingAccountsCount}} Following | {{user?.followersAccountsCount}} Followers
+                  </p>
+
+                  <div *ngIf="isFollowing(user.id); else followBlock">
+                    <a class="secondary-content" (click)="unfollowUser(user.username)">
+                      <i class="material-icons">remove_circle
+                      </i>
+                    </a>
+                  </div>
+                  <ng-template #followBlock>
+                    <a class="secondary-content" (click)="followUser(user.username)">
+                      <i class="material-icons">person_add
+                      </i>
+                    </a>
+                  </ng-template>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

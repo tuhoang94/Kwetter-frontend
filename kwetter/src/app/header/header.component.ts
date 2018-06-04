@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../api/authentication.service';
 import { Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+
+import { SearchuserComponent } from '../searchuser/searchuser.component';
+
 
 
 
@@ -15,11 +21,11 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("oninit header");
+
   }
+
   ngOnChange(){
     console.log("onchange header");
-
   }
 
   logout(){
@@ -27,4 +33,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
-}
+
+  }
+
+

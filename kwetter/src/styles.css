@@ -2,3 +2,9 @@
 body {
     background-color: #e0f7fa;
 }
+
+mat-dialog-container {
+    position: fixed;
+    background-color: white;
+    top: 100px;
+  }

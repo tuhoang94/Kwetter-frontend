@@ -54,7 +54,7 @@ export class AuthenticationService {
     login(username, password) {
         let body = "username=" + username + "&password="+ password;
 
-        return this.http.post("http://localhost:8080/kwetter/rest/user/login", body, this.httpPost).map(user => {
+        return this.http.post(this.apiUrl + "login", body, this.httpPost).map(user => {
             
             // login successful if there's a jwt token in the response
             console.log("connection works");
@@ -72,8 +72,16 @@ export class AuthenticationService {
 
 
     getLoggedinUser() {
-        return localStorage.getItem('loggedinUser')
+        let userStorage= localStorage.getItem('loggedinUser');
+        return JSON.parse(userStorage);
     }
+
+    getLoggedInUserObject(){
+        let userStorage= localStorage.getItem('loggedinUser');
+        let user: User = JSON.parse(userStorage);
+        return user;
+    }
+
 
     logout() {
         // remove user from local storage to log user out

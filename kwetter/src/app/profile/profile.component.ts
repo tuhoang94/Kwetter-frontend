@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
   kweetBool: boolean;
 
   loggedinUser: User;
-  ownKweets: Kweet[];
+  ownKweets: any[];
   followingUsers: any[];
   followersUsers: any[];
 
@@ -31,9 +31,22 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getUser();
     this.getFollowers();
     this.getFollowing();
     this.getOwnKweets();
+  }
+
+  getUser(){
+    this.userService.getUserById(this.loggedinUser.id)
+    .subscribe(
+    data => {
+      this.loggedinUser = data;
+    },
+    error => {
+      console.log("error");
+      console.log(error);
+    });
   }
 
   /*

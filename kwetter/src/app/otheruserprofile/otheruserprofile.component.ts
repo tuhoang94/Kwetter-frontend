@@ -36,6 +36,7 @@ export class OtheruserprofileComponent implements OnInit, OnDestroy {
     this.getUser(this.id);
     this.getFollowers(this.id);
     this.getFollowing(this.id);
+    this.getOwnKweets(this.id);
   }
 
   getUser(id: number) {

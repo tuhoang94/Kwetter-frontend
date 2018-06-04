@@ -5,6 +5,7 @@ import {LoginComponent} from './login/login.component';
 import {HomeComponent} from './home/home.component';
 import {RegisterComponent} from './register/register.component';
 import { OtheruserprofileComponent } from './otheruserprofile/otheruserprofile.component';
+import { SearchuserComponent } from './searchuser/searchuser.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,8 @@ const routes: Routes = [
     {path: 'home', component: HomeComponent},
     {path: 'register', component: RegisterComponent},
     {path:'otheruser/:id', component: OtheruserprofileComponent},
+    {path: 'searchuser', component: SearchuserComponent},
+
     // redirect to home
     {path: '**', redirectTo: 'login'}
   ];

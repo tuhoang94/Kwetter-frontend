@@ -1,12 +1,31 @@
 <nav>
-  <div class="nav-wrapper cyan">
-    <a [routerLink]="['home']" class="brand-logo center"><img class="responsive-img" src="http://www.conzonia.com/images/twittericon.png" style="max-width: 50%;" /></a>
+  <div class="nav-wrapper teal lighten-1">
+    <a [routerLink]="['home']" class="brand-logo center">
+      <img class="responsive-img" src="http://www.conzonia.com/images/twittericon.png" style="max-width: 50%;" />
+    </a>
     <a [routerLink]="['home']" class="brand-logo" style="padding-left: 5%;">Kwetter</a>
 
-    <ul class="right hide-on-med-and-down" >
-      <li><a [routerLink]="['home']"><i class="material-icons">list</i></a></li>
-      <li><a [routerLink]="['profile']"><i class="material-icons">person</i></a></li>
-      <li><a (click)="logout()"><i class="material-icons">exit_to_app</i></a></li>
+    <ul class="right hide-on-med-and-down">
+      <li>
+        <a [routerLink]="['searchuser']">
+          <i class="material-icons">search</i>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['home']">
+          <i class="material-icons">list</i>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['profile']">
+          <i class="material-icons">person</i>
+        </a>
+      </li>
+      <li>
+        <a (click)="logout()">
+          <i class="material-icons">exit_to_app</i>
+        </a>
+      </li>
     </ul>
   </div>
 </nav>

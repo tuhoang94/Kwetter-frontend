@@ -8,9 +8,9 @@
               <span class="card-title">{{user?.username}}</span>
             </div>
             <div class="card-action">
-              <a href="#">{{user?.followersAccountsCount}} Followers</a>
+              <a [routerLink]="['/profile']">{{user?.followersAccountsCount}} Followers</a>
               <p></p>
-              <a href="#">{{user?.followingAccountsCount}} Following</a>
+              <a [routerLink]="['/profile']">{{user?.followingAccountsCount}} Following</a>
             </div>
           </div>
           <div class="card">
@@ -62,9 +62,9 @@
             </div>
           </div>
 
-          <div class="row" style="max-height: 10%">
+          <div class="row">
             <nav>
-              <div class="nav-wrapper cyan">
+              <div class="nav-wrapper teal lighten-1">
                   <div class="input-field" >
                     <input id="search" type="search" [(ngModel)]="search" placeholder="Search by username..." required>
                     <label class="label-icon" for="search">
@@ -85,28 +85,7 @@
                   <a>@{{kweet?.username}}</a>
                   <li>{{kweet?.message}}</li>
                 </ul>
-                <!--
-                <ul>
-                  <b>Tu</b> <a>@TuHoang94</a>
-                  <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
-                    atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique
-                    sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum
-                    facilis est et expedita distinctio. </li>
-                </ul>
-                <ul>
-                  <b>Jeroen</b> @JeroenvdWal
-                  <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
-                    atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique
-                    sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum
-                    facilis est et expedita distinctio. </li>
-                </ul>
-                <ul>
-                  <b>Justin</b> @jbieber99
-                  <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
-                    atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique
-                    sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum
-                    facilis est et expedita distinctio. </li>
-                </ul>-->
+
               </div>
             </div>
           </div>

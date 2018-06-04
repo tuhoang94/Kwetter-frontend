@@ -46,10 +46,10 @@ export class KweetService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  getKweetsFromUser(id: number): Observable<Kweet[]> {
-    return this.http.get(this.kweetApiUrl + "get/userkweet/" + id)
-      .map((res: Response) => res.json())
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  getKweetsFromUser(id: number): Observable<any[]> {
+    return this.http.get(this.kweetApiUrl + "get/userkweet/" + id, this.httpOptions)
+    .map((res: Response) => res)
+      .catch((error: any) => this.handleError(error));
   }
 
   getKweetFromsFollowing(id: number): Observable<Kweet[]> {
@@ -64,7 +64,8 @@ export class KweetService {
     let body = new URLSearchParams();
     body.set('userid', userId.toString());
     body.set('message', message);
-
+    console.log('addKweet body:');
+    console.log(body.toString());
     return this.http.post(this.kweetApiUrl + 'create', body.toString(), this.httpPost).map(data => {
 
       console.log("posted kweet");
